@@ -1,5 +1,24 @@
 # Functional Programming Fundamentals
 
+## Contents
+
+- [Functional JavaScript](#functional-javascript)
+  - [Variables](#variables)
+  - [Functions](#functions)
+  - [Mutation and Imutability](#mutation-and-immutability)
+  - [Array methods](#array-methods)
+  - [Control flow](#control-flow)
+- [Functional Thinking](#functional-thinking)
+  - [Data flow: Data, Functions, and Actions](#data-flow-data-functions-and-actions)
+  - [Composition and Contamination](#composition-and-contamination)
+- [Declarative and imperative programming](#declarative-and-imperative-programming)
+  - [Statements and expressions](#statements-and-expressions)
+  - [References and values](#references-and-values)
+- [Readings](#readings)
+- [Exercises](#exercises)
+- [Resources](#resources)
+- [References](#references)
+
 What is functional programming?
 
 > [Functional programing] is a programming paradigm where applications are composed using pure functions, avoiding shared mutable state and side-effects. Functional programming is usually more declarative than imperative, meaning that we express what to do rather than how to do it. - Eric Elliott, Composing Software
@@ -141,7 +160,7 @@ cart.total; // 25.00
 - let isOpen = false; // assignment
 - delete item.discountCode; // property deletion
 
-### Mutable and immutable array methods
+### Array methods
 
 - Mutable methods on the `Array.prototype` object are methods that iterate and change the array.
 - Immutale methods on the `Array.prototype` object are methods that copy and iterate the array.
@@ -195,34 +214,7 @@ Functional thinking requires separating data, functions, and actions, isolating 
 
 Functional software is organized into three distinct categories: data, functions, and actions. Distinguishing between these three concepts is essential in functional programming. Functional code tends toward simplicity by using data and functions where possible and actions only where necessary.
 
-> Data > Functions > Actions
-
-#### Composition and Contamination
-
-When you compose an action with a data, a function, or another action, the result also becomes an action.
-
-| Data                        | Functions                       | Actions                       |
-|-----------------------------|---------------------------------|-------------------------------|
-| data + data -> data         | function + data -> function     | action + data -> action ☢️     |
-| data + function -> function | function + function -> function | action + function -> action ☢️ |
-| data + action -> action ☢️    | function + action -> action ☢️  | action + action -> action ☢️   |
-
-```typescript
-function applyDiscount(item, discount) {
-  // code to apply discount to item
-  updateOrder(item); // ! Calls impure action updateOrder
-}
-function checkForDiscount(item, discountCodes) {
-  // code to get discount for item
-  applyDiscount(item, discount); // ! Calls impure applyDiscount
-}
-function addItems(items) {
-  items.forEach(item => {
-    checkForDiscount(item, discountCodes); // ! Calls impure checkForDiscount
-  });
-}
-addItems(items, discountCodes); // ! Impure actions all the way down
-```
+Data > Functions > Actions
 
 #### Data: Facts about information
 
@@ -258,7 +250,34 @@ Actions are called for side effects, not for return values.
   - fetch
   - document.innerHTML
 
-### Declarative and imperative code
+### Composition and Contamination
+
+When you compose an action with a data, a function, or another action, the result also becomes an action.
+
+| Data                        | Functions                       | Actions                       |
+|-----------------------------|---------------------------------|-------------------------------|
+| data + data -> data         | function + data -> function     | action + data -> action ☢️     |
+| data + function -> function | function + function -> function | action + function -> action ☢️ |
+| data + action -> action ☢️    | function + action -> action ☢️  | action + action -> action ☢️   |
+
+```typescript
+function applyDiscount(item, discount) {
+  // code to apply discount to item
+  updateOrder(item); // ! Calls impure action updateOrder
+}
+function checkForDiscount(item, discountCodes) {
+  // code to get discount for item
+  applyDiscount(item, discount); // ! Calls impure applyDiscount
+}
+function addItems(items) {
+  items.forEach(item => {
+    checkForDiscount(item, discountCodes); // ! Calls impure checkForDiscount
+  });
+}
+addItems(items, discountCodes); // ! Impure actions all the way down
+```
+
+### Declarative and imperative programming
 
 - Imperative code uses explicit control flow and implicit data flow. It describes **how** to do something and how each step is the process is connected. Often uses statements.
 - Declarative code uses explicit data flow and implicit control flow. It describes **what** to do using verbs. Uses expressions.
@@ -287,7 +306,7 @@ Best practice: prefer function expression to function declarations because funct
 #### Related concepts
 - Immutability
 
-## Reading
+## Readings
 - Composing Software by Eric Elliot
 
 Read the chapters that look interesting to you and meet your needs. "The Dao of Immutability", "What is Functional Programming?", and "A Functional Programmer's Introduction to JavaScript" are good places to start.
