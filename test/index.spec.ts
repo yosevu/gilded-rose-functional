@@ -1,4 +1,6 @@
+/* eslint-disable */
 // @ts-nocheck
+
 import { allItems, getItem } from './fixture';
 import { createGildedRose, doTimes, run, updateItems } from './utility';
 
