@@ -20,8 +20,8 @@ const plusOne = n => n + 1;
 const timesTwo = n => n * 2;
 
 const addAndMultiply = n => {
-  const afterPlusOne = plusOne(x);
-  const afterTimeTwo = timeTwo(afterPlusOne);
+  const afterPlusOne = plusOne(n);
+  const afterTimesTwo = timesTwo(afterPlusOne);
   return afterTimesTwo;
 };
  
@@ -31,9 +31,14 @@ addAndMultiply(20); // 42
 ## Functional JavaScript
 
 ### Variables
-- `var`: can redeclar, can reassign, useful for flexibility in experimental environments
+- `var`: can redeclare, can reassign, useful for flexibility in experimental environments
 - `let`: can't redeclare, can reassign, useful for imperative iteration e.g. for and while loops
 - `const`: can't redeclare, can't be reassigned, but can mutate properties.
+
+```typescript
+const car = {wheels: 2}
+car.wheels = 4;
+```
 
 Best practice: default to the strictest: `const`.
 
@@ -60,7 +65,7 @@ graph LR
     %% D(("🥑")) --> |Input| E(("Make salad"))
     E --> |Output| F(("🥗"))
     %% E --> |Output| F(("🥗 🍌"))
-    %% E --> |Output| F(("🥗 🥕 🍆"))
+    %% E --> |Output| F(("🥗 🍌 🍆"))
 
     H(("🍌"))
 ```
@@ -76,9 +81,67 @@ updateQuality(items); // []
 gildedRose.updateQuality(); // void or []
 ```
 
-### Mutable and immutable array methods
+### Mutation and Immutability
 
-Immutability: "The state of being unchangeable in the memory after creation." - Wiktionary
+> The state of being unchangeable in the memory after creation. - Wiktionary
+
+```typescript
+const age = 18;
+```
+
+#### Examples
+
+```typescript
+class ShoppingCart() {
+  constructor(items = [], total = 0) {
+    this.total = total;
+    this.items = items;
+  }
+  addItem(item) {
+    this.items.push(item);
+    this.total += item.price;
+  }
+  removeItem(id) {
+    // ..
+  }
+  checkout() {
+    // ..
+  }
+}
+
+const cart = new ShoppingCart();
+
+cart.total; // 0
+cart.items; // []
+
+// Mutation
+cart.addItem({ name: 'tropical fish', 🐠, price: 5.00 });
+
+cart.items; // [{ name: 'tropical fish', 🐠, price: 5.00 }]
+cart.total; // 5.00
+
+// Mutation
+cart.addItem({ name: 'mouse', 🐁, price: 20.00 });
+
+cart.items; // [{ name: 'tropical fish', 🐠, price: 5.00 }, { name: 'mouse', 🐁, price: 20.00 }]
+
+cart.total; // 25.00
+```
+
+#### Examples
+
+- prompt(‘Confirm close?’); // function calls
+- console.log(‘debug’, something); // method calls
+- new Date() // constructors
+- item // accessing a mutable variable
+- item.price // property access
+- items[0] // array access
+- Math.random // indeterminate
+- setTimeout // depends on time
+- let isOpen = false; // assignment
+- delete item.discountCode; // property deletion
+
+### Mutable and immutable array methods
 
 - Mutable methods on the `Array.prototype` object are methods that iterate and change the array.
 - Immutale methods on the `Array.prototype` object are methods that copy and iterate the array.
@@ -128,7 +191,7 @@ Control flow is the order in which statements are executed that decides when and
 
 Functional thinking requires separating data, functions, and actions, isolating side effects, and using function composition to solve problems and build software.
 
-### Data flow: Data Functions, and Actions
+### Data flow: Data, Functions, and Actions
 
 Functional software is organized into three distinct categories: data, functions, and actions. Distinguishing between these three concepts is essential in functional programming. Functional code tends toward simplicity by using data and functions where possible and actions only where necessary.
 
@@ -221,75 +284,29 @@ Best practice: prefer function expression to function declarations because funct
   1. As Object-Oriented Programming (OOP) objects that inherits properties and methods from `Object.prototype`.
   2. As hash map data structures, implemented as either an associative array or a dictionary to map keys to values.
 
-### Mutation and Immutability
-
-```typescript
-class ShoppingCart() {
-  constructor(items = [], total = 0) {
-    this.total = total;
-    this.items = items;
-  }
-  addItem(item) {
-    this.items.push(item);
-    this.total += item.price;
-  }
-  removeItem(id) {
-    // ..
-  }
-  checkout() {
-    // ..
-  }
-}
-
-const cart = new ShoppingCart();
-
-cart.total; // 0
-cart.items; // []
-
-// Mutation
-cart.addItem({ name: 'tropical fish', 🐠, price: 5.00 });
-
-cart.items; // [{ name: 'tropical fish', 🐠, price: 5.00 }]
-cart.total; // 5.00
-
-// Mutation
-cart.addItem({ name: 'mouse', 🐁, price: 20.00 });
-
-cart.items; // [{ name: 'tropical fish', 🐠, price: 5.00 }, { name: 'mouse', 🐁, price: 20.00 }]
-
-cart.total; // 25.00
-```
-
-#### Examples
-
-- prompt(‘Confirm close?’); // function calls
-- console.log(‘debug’, something); // method calls
-- new Date() // constructors
-- item // accessing a mutable variable
-- item.price // property access
-- items[0] // array access
-- Math.random // indeterminate
-- setTimeout // depends on time
-- let isOpen = false; // assignment
-- delete item.discountCode; // property deletion
-
 #### Related concepts
 - Immutability
 
+## Reading
+- Composing Software by Eric Elliot
+
+Read the chapters that look interesting to you and meet your needs. "The Dao of Immutability", "What is Functional Programming?", and "A Functional Programmer's Introduction to JavaScript" are good places to start.
+
 ## Exercises
 
-Start from scratch or migrate current solution to this repository.
+Fork this repository and start from scratch or bring your current solution to this codebase.
 
-1. Read the chapters in Composing Software that look interesting to you.
-  - The Dao of Immutability
-  - What is Functional Programming?
-  - A Functional Programmer's Introduction to JavaScript
 1. Identify and note examples of data, functions, actions, and side effects.
 1. Identify and note examples of imeprative code.
 1. Decompose and separate data, functions, and actions.
 1. Use function composition to refactor imperative control flow and statements to declarative data flow and expressions.
 
+## Resources
+
+- [Functional Programming Jargon](https://github.com/hemanth/functional-programming-jargon)
+- [eslint-plugin-functional](https://github.com/eslint-functional/eslint-plugin-functional) 
+
 ## References
-- Composing Software - Eric Elliott
-- Grokking Simplicity - Eric Normand
+- Composing Software by Eric Elliott
+- Grokking Simplicity by Eric Normand
 - [Gilded Rose Refactoring Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata)
