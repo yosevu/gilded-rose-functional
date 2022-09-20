@@ -7,6 +7,7 @@ export const defaultItems = [
   { name: "Aged Brie", sellIn: 2, quality: 0 },
   { name: "Elixir of the Mongoose", sellIn: 5, quality: 7 },
   { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 },
+  // Backstage passes
   { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 20 },
   // TODO:
   { name: "Conjured Mana Cake", sellIn: 3, quality: 6 }
