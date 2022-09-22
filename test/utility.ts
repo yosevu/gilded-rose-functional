@@ -1,12 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GildedRose } from '../src/gilded-rose';
-
-export function createGildedRose(items) {
-  return new GildedRose(items);
-}
-
 export function updateItems(updateQuality, items) {
   const context = { items, updateQuality };
 
