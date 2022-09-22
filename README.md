@@ -6,6 +6,20 @@ If you are unfamiliar with the Gilded Rose, read the [Gilded Rose Requirements](
 You may also learn more about the Gilded Rose from [Gilded Rose Refactoring Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata).
 If you are unfamiliar with functional programming, read through [Functional Programming Fundamentals](/docs).
 
+## Setup
+
+### Install yarn
+
+```sh
+npm install --global yarn
+```
+
+### Install dependencies
+
+```sh
+yarn
+```
+
 ## Scripts
 
 ### Lint
@@ -18,7 +32,7 @@ yarn lint
 yarn test
 ```
 
-### Requirements
+## Requirements
 
 ``` text
 ======================================
@@ -61,7 +75,7 @@ Just for clarification, an item can never have its Quality increase above 50, ho
 legendary item and as such its Quality is 80 and it never alters.
 ```
 
-### Todo
+## Planned project updates
 - [ ] Create a web interface for the Gilded Rose
 - [ ] Create a testing and refactoring guide to the Gilded Rose
 - [ ] Integrate functional TypeScript concepts.
