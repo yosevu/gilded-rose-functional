@@ -1,13 +1,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GildedRose } from '../src/gilded-rose';
+import { updateQuality } from '../src/gilded-rose';
 import { createItem, getItem } from './fixture';
 import { updateTimes, updateItems } from './utility';
 
 describe('updateQuality', function() {
-  const { updateQuality } = new GildedRose();
-
   describe('Standard item', () => {
     it('returns a quality of 0 or greater, never negative', () => {
       const items = [createItem('elixir', { sellIn: 2, quality: 2 })];
