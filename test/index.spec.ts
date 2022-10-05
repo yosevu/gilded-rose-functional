@@ -3,7 +3,7 @@
 
 import { updateQuality } from '../src/gilded-rose';
 import { createItem, getItem } from './fixture';
-import { updateTimes, updateItems } from './utility';
+import { updateTimes } from './utility';
 
 describe('updateQuality', function() {
   describe('Standard item', () => {
