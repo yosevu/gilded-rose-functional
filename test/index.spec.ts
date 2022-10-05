@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { updateQuality } from '../src/gilded-rose';
+import { updateQuality2 as updateQuality } from '../src/gilded-rose';
 import { createItem, getItem } from './fixture';
 import { updateTimes, updateItems } from './utility';
 
